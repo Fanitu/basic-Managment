@@ -37,13 +37,22 @@
   font-size: 25px;
   font-weight: bold;
 }
-.orderType,.orderPrice{
+.orderType{
   width: 90%;
   font-size: 18px;
   padding: 25px;
-  border-radius: 5px;
+  border-radius: 10px;
   font-weight: 500;
   margin: 20px;
+}
+
+.orderPrice{
+  width: 80%;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px 15px 0px 10px;
+
+
 }
 .saveButton{
   width: 80%;
