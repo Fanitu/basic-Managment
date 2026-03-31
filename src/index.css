@@ -1,0 +1,61 @@
+.headerSection{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+.headerTitle{
+  color: white;
+  font-family: sans-serif;
+  font-size: 35px;
+}
+.mainSection{
+  display: flex;
+  flex-direction: column;
+  align-items: top;
+  justify-content: top;
+  height: 100vh;
+  background-color: lightblue;
+  margin:20px;
+  border-radius: 15%;
+}
+
+.mainSectionTitle{
+  margin-top: 80px;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+}
+.mainSectionForm{
+  text-align: center;
+  background-color: white;
+  margin: 30px;
+  height: 60vh;
+  padding: 50px;
+}
+.orderLabel{
+  font-size: 25px;
+  font-weight: bold;
+}
+.orderType,.orderPrice{
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+.saveButton{
+  width: 80%;
+  padding: 15px;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: rgb(78, 163, 232);
+  box-shadow: inset(black,5px,5px,10px);
+  margin-top: 40px;
+  color:black;
+}
+.saveButton:hover{
+  background-color: black;
+  color: white;
+  scale: 1.1;
+}
