@@ -44,7 +44,7 @@ function MainSection() {
 
       console.error('error submitting Order:',err)
       setError(err.message);
-      alert('Failed to Submit order,Try again later.')
+      alert(`Failed to Submit order,Try again later.${err.message}`)
       
     }finally{
       setIsLoading(false);
