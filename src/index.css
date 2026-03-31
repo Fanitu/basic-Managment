@@ -38,6 +38,7 @@
   font-weight: bold;
 }
 .orderType,.orderPrice{
+  width: 50%;
   font-size: 18px;
   padding: 25px;
   border-radius: 5px;
