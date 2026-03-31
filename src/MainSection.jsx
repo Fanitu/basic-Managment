@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios';
 
 function MainSection() {
 
@@ -16,23 +17,17 @@ function MainSection() {
     setError(null)
 
     try {
-      const response = await fetch('http://localhost:5000/api/order',{
-          method: 'POST',
-          headers:{
-            'Content-Type':'application/json',
-          },
-          body:JSON.stringify({
-            name:orderName,
-            price:parseFloat(orderPrice)
-          })
+      const response = await axios.post('http://localhost:5000/api/order',{
 
-      });
+        name:orderName,
+        price:parseFloat(orderPrice)
+      })
 
-    if(!response.ok){
+    if(response.status !== 201 ){
       throw new Error(`HTTP Error! status:${response.status}`);
     }
-    const data = await response.json();
-    console.log(data)
+   /*  const data = await response.json();
+    console.log(data) */
 
     setOrderName('')
     setOrderPrice('')
