@@ -1,16 +1,12 @@
-import { useState } from 'react'
-import Header from './Header'
-import MainSection from './MainSection'
+import React from 'react';
+import AppRouter from './AppRouter';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-    <Header/>
-    <MainSection/>
-    </>
-  )
+    <div className="App">
+      <AppRouter />
+    </div>
+  );
 }
 
-export default App
+export default App;

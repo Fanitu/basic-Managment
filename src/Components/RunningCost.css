@@ -1,0 +1,142 @@
+.running-cost {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.running-cost h2 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 28px;
+}
+
+.cost-form {
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+  font-size: 16px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #999;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.message {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 5000;
+  animation: slideln 0.3 ease-out;
+}
+
+.messagesuccess{
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c336cb;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 5000;
+    animation: slideln 0.3 ease-out;
+    
+}
+.messageerror{
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+@keyframes slideln {
+    from{
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+}
+
+.message:not(:empty) {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .running-cost {
+    padding: 10px;
+  }
+  
+  .cost-form {
+    padding: 20px;
+  }
+  
+  .running-cost h2 {
+    font-size: 24px;
+  }
+  
+  .form-group input {
+    padding: 8px;
+  }
+  
+  button {
+    padding: 10px 20px;
+  }
+}
