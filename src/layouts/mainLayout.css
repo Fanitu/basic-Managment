@@ -49,8 +49,16 @@
 }
 
 .underNav{
-  background-color: rgb(231, 222, 222);
+  background-color: rgb(116, 57, 57);
   padding: 2px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  border-radius: 15px;
+  margin-top: 5px;
+
 }
 
 .main-content {
