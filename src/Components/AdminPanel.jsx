@@ -16,13 +16,23 @@ const AdminPanel = () => {
     try {
       setLoading(true);
       const response = await axios.get('http://localhost:5000/api/order')
-      console.log(response)
       
-      setOrders(response.orders);
-      setRunningCosts(response.count);
+      setOrders(response.data.orders);
+
+    } catch (err) {
+      console.log('Error fetching data:', err.response.data);
+      setError('Failed to fetch data. Please check your backend server.');
+    } 
+
+    try {
+      setLoading(true);
+      const res = await axios.get('http://localhost:5000/api/running-costs')
+      console.log(res.data.runningCost)
+      
+      setRunningCosts(res.data.runningCost);
       setError('');
-    } catch (error) {
-      console.error('Error fetching data:', error);
+    } catch (err) {
+      console.log('Error fetching data:', err.response.data);
       setError('Failed to fetch data. Please check your backend server.');
     } finally {
       setLoading(false);
@@ -67,12 +77,12 @@ const AdminPanel = () => {
               {orders.map((order, index) => (
                 <div key={order.id || index} className="item-card">
                   <div className="item-header">
-                    <strong className="item-title">{order.orderType}</strong>
+                    <strong className="item-title">{order.ordersName}</strong>
                     <span className="item-date bold">{formatDate(order.createdAt || order.date)}</span>
                   </div>
                   <div className="item-details">
                     <span>Quantity: {order.quantity}</span>
-                    <span>Total: ${(order.quantity * (order.price || 0)).toFixed(2)}</span>
+                    <span>Total: Birr {(order.ordersPrice).toFixed(2)}</span>
                   </div>
                 </div>
               ))}
@@ -94,11 +104,11 @@ const AdminPanel = () => {
               {runningCosts.map((cost, index) => (
                 <div key={cost.id || index} className="item-card cost-card">
                   <div className="item-header">
-                    <strong className="item-title">{cost.costName}</strong>
+                    <strong className="item-title">{cost.name}</strong>
                     <span className="item-date bold">{formatDate(cost.createdAt || cost.date)}</span>
                   </div>
                   <div className="item-details">
-                    <span>Amount: ${cost.amount.toFixed(2)}</span>
+                    <span>Amount: Birr {cost.price.toFixed(2)}</span>
                   </div>
                 </div>
               ))}
