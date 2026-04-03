@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import './MainLayout.css'; // Optional: Add your styles
+import './mainLayout.css'; // Optional: Add your styles
 
 const MainLayout = () => {
   const location = useLocation();
