@@ -1,70 +1,56 @@
-import { useState } from 'react'
+import React, { useState } from 'react';
 import axios from 'axios';
+import './MainSection.css';
 
-function MainSection() {
+const MainSection = () => {
+  const [formData, setFormData] = useState({
+    orderType: '',
+    quantity: 0
+  });
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: name === 'quantity' ? parseFloat(value) : value
+    });
+  };
 
-  const [orderName,setOrderName] = useState('');
-  const [orderPrice,setOrderPrice] = useState('');
-  const [isLoading,setIsLoading] = useState(false);
-  const [error,setError] = useState(null);
-
-  const formSubmit = async(e)=>{
-    console.log('clicked')
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    setIsLoading(true)
-    setError(null)
+    setLoading(true);
+    setMessage('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/order',{
-
-        name:orderName,
-        price:parseFloat(orderPrice)
-      })
-
-    if(response.status !== 201 ){
-      throw new Error(`HTTP Error! status:${response.status}`);
+      const response = await axios.post('http://localhost:5000/api/orders', formData);
+      setMessage('Order submitted successfully!');
+      setFormData({ orderType: '', quantity: 0 });
+      console.log('Response:', response.data);
+    } catch (error) {
+      setMessage('Error submitting order. Please try again.');
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
     }
-   /*  const data = await response.json();
-    console.log(data) */
-
-    setOrderName('')
-    setOrderPrice('')
-    
-
-    alert('order Submited Succesfully');
-      
-    } catch (err) {
-
-      console.error('error submitting Order:',err)
-      setError(err.message);
-      alert(`Failed to Submit order,Try again later.${err.message}`)
-      
-    }finally{
-      setIsLoading(false);
-
-    }
-    
-
-  }
+  };
 
   return (
-    <>
-       <div className='mainSection'>
-        <h1 className='mainSectionTitle'>
-            Mini fastfood Managemnt system.Input your order below and save it!
-         </h1>
-         <div className='mainSectionForm'>
-        <h1>
-          Order form
-        </h1>
-
-        <form onSubmit={formSubmit}>
-           <p>
-            <label for="order" className='orderLabel'>Order Name: </label>
-                <select name="order" value={orderName} id="orderName" onChange={(e)=>setOrderName(e.target.value)} className='orderType' required>
-                  <optgroup label="Fata Normal">
+    <div className="main-section">
+      <h2>Place Order</h2>
+      <form onSubmit={handleSubmit} className="order-form">
+        <div className="form-group">
+          <label htmlFor="orderType">Order Type:</label>
+          <select
+            id="orderType"
+            name="orderType"
+            value={formData.orderType}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="">Select order type</option>
+             <optgroup label="Fata Normal">
                     <option value="Fata Normal2">Fata Normal ms 2</option>
                     <option value="Fata Normal3">Fata Normal ms 3</option>
                     <option value="Fata Normal4">Fata Normal ms 4</option>
@@ -100,27 +86,30 @@ function MainSection() {
                     <option value="Two litre">Two litre</option>
                     <option value="Half litre">Half litre</option>
                   </optgroup>
-                </select>
-           </p>
-           <p>
-            <label for="order" className='orderLabel'>Order price: </label>
-          <input type='number' className='orderPrice' placeholder='Product Price' value={orderPrice} id="orderPrice" onChange={(e)=>setOrderPrice(e.target.value)} required/>
-           </p>
-           <button type='submit' disabled={isLoading} className='saveButton'>
-              {isLoading?'Submitting': 'Submit Order'}
-           </button>
+          </select>
+        </div>
 
-           {error && setTimeout(()=>{
-            <p style={{color:'red'}}>Error:{error}</p>
-              },2000)}
-        </form>
-       </div>
-       <div>
+        <div className="form-group">
+          <label htmlFor="quantity">Price:</label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            value={formData.quantity}
+            onChange={handleInputChange}
+            min="1"
+            required
+          />
+        </div>
+
+        <button type="submit" disabled={loading}>
+          {loading ? 'Submitting...' : 'Submit Order'}
+        </button>
         
-       </div>
-       </div>   
-    </>
-  )
-}
+        {message && <div className="message">{message}</div>}
+      </form>
+    </div>
+  );
+};
 
 export default MainSection;
