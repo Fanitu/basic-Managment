@@ -12,7 +12,7 @@ const MainLayout = () => {
           <h1 className="shop-title">My Shop Management System</h1>
         </div>
       </nav>
-      <p className='underNav'>
+      <div className='underNav'>
         <ul className="nav-menu">
             <li className={location.pathname === '/' ? 'active' : ''}>
               <Link to="/">Main Section</Link>
@@ -24,7 +24,7 @@ const MainLayout = () => {
               <Link to="/admin">Admin Panel</Link>
             </li>
           </ul>
-      </p>
+      </div>
       
       <main className="main-content">
         <Outlet /> {/* This renders the current route's component */}
