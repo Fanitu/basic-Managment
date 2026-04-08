@@ -106,12 +106,12 @@ const AdminPanel = () => {
   const costsByDate = groupByDate(runningCosts);
   const allDates = getAllDates();
 
-  if (loading) {
-    return <div className="loading">Loading...</div>;
-  }
-
   if (error) {
     return <div className="error">{error}</div>;
+  }
+
+  if (loading) {
+    return <div className="loading">Loading...</div>;
   }
 
   return (
