@@ -15,7 +15,7 @@ const AdminPanel = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('https://railway.com/project/a0ddb8b6-19a3-43cd-8c22-e546aad57326?environmentId=b3526dc9-4959-44a3-8be8-86c805e60e69/order')
+      const response = await axios.get('managmentbackend-production.up.railway.app/order')
       console.log(response.data.orders);
       
       setOrders(response.data.orders);
@@ -26,7 +26,7 @@ const AdminPanel = () => {
     } 
 
     try {
-      const res = await axios.get('https://railway.com/project/a0ddb8b6-19a3-43cd-8c22-e546aad57326?environmentId=b3526dc9-4959-44a3-8be8-86c805e60e69/running-costs')
+      const res = await axios.get('managmentbackend-production.up.railway.app/running-costs')
       
       setRunningCosts(res.data.runningCost);
       setError('');
