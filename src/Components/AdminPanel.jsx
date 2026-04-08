@@ -5,7 +5,7 @@ import './AdminPanel.css';
 const AdminPanel = () => {
   const [orders, setOrders] = useState([]);
   const [runningCosts, setRunningCosts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [load, setLoad] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -14,7 +14,6 @@ const AdminPanel = () => {
 
   const fetchData = async () => {
     try {
-      setLoading(true);
       const response = await axios.get('https://managmentbackend-production.up.railway.app/api/order')
       console.log(response.data.orders);
       
@@ -34,7 +33,7 @@ const AdminPanel = () => {
       console.log('Error fetching data:');
       setError('Failed to fetch data. Please check your backend server.');
     } finally {
-      setLoading(false);
+      setLoad(false);
     }
   };
 
