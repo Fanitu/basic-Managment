@@ -5,7 +5,7 @@ import './AdminPanel.css';
 const AdminPanel = () => {
   const [orders, setOrders] = useState([]);
   const [runningCosts, setRunningCosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
