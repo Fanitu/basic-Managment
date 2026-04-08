@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.[span_8](start_span)html"
+    }
+  ]
+}
