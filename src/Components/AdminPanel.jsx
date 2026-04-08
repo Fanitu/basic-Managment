@@ -15,23 +15,23 @@ const AdminPanel = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/order')
+      const response = await axios.get('https://railway.com/project/a0ddb8b6-19a3-43cd-8c22-e546aad57326?environmentId=b3526dc9-4959-44a3-8be8-86c805e60e69/order')
       console.log(response.data.orders);
       
       setOrders(response.data.orders);
 
     } catch (err) {
-      console.log('Error fetching data:', err.response.data);
+      console.log('Error fetching data:');
       setError('Failed to fetch data. Please check your backend server.');
     } 
 
     try {
-      const res = await axios.get('http://localhost:5000/api/running-costs')
+      const res = await axios.get('https://railway.com/project/a0ddb8b6-19a3-43cd-8c22-e546aad57326?environmentId=b3526dc9-4959-44a3-8be8-86c805e60e69/running-costs')
       
       setRunningCosts(res.data.runningCost);
       setError('');
     } catch (err) {
-      console.log('Error fetching data:', err.response.data);
+      console.log('Error fetching data:');
       setError('Failed to fetch data. Please check your backend server.');
     } finally {
       setLoading(false);
