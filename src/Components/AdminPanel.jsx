@@ -5,7 +5,7 @@ import './AdminPanel.css';
 const AdminPanel = () => {
   const [orders, setOrders] = useState([]);
   const [runningCosts, setRunningCosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [load, setLoad] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -13,32 +13,27 @@ const AdminPanel = () => {
   }, []);
 
   const fetchData = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get('https://managmentbackend-production.up.railway.app/api/order')
-      console.log(response.data.orders);
-      
-      setOrders(response.data.orders);
+  setLoad(true); // Ensure loading is true when refresh is clicked
+  setError('');   // Clear previous errors
+  
+  try {
+    // Run both requests in parallel for better performance
+    const [ordersRes, costsRes] = await Promise.all([
+      axios.get('https://managmentbackend-production.up.railway.app/api/order'),
+      axios.get('https://managmentbackend-production.up.railway.app/api/running-costs')
+    ]);
 
-    } catch (err) {
-      console.log('Error fetching data:',);
-      setError('Failed to fetch data. Please check your backend server.');
-    } 
+    setOrders(ordersRes.data.orders);
+    setRunningCosts(costsRes.data.runningCost);
+  } catch (err) {
+    console.error('Error fetching data:', err);
+    setError('Failed to fetch data. Please check your backend server.');
+  } finally {
+    setLoad(false); // This will ALWAYS run, stopping the white screen
+  }
+};
 
-    try {
-      const res = await axios.get('https://managmentbackend-production.up.railway.app/api/running-costs')
-      
-      setRunningCosts(res.data.runningCost);
-      setError('');
-    } catch (err) {
-      console.log('Error fetching data:');
-      setError('Failed to fetch data. Please check your backend server.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const formatDate = (dateString) => {
+    const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
@@ -110,7 +105,7 @@ const AdminPanel = () => {
     return <div className="error">{error}</div>;
   }
 
-  if (loading) {
+  if (load) {
     return <div className="loading">Loading...</div>;
   }
 
