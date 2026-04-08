@@ -15,18 +15,18 @@ const AdminPanel = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('managmentbackend-production.up.railway.app/api/order')
+      const response = await axios.get('https://managmentbackend-production.up.railway.app/api/order')
       console.log(response.data.orders);
       
       setOrders(response.data.orders);
 
     } catch (err) {
-      console.log('Error fetching data:');
+      console.log('Error fetching data:',);
       setError('Failed to fetch data. Please check your backend server.');
     } 
 
     try {
-      const res = await axios.get('managmentbackend-production.up.railway.app/api/running-costs')
+      const res = await axios.get('https://managmentbackend-production.up.railway.app/api/running-costs')
       
       setRunningCosts(res.data.runningCost);
       setError('');
