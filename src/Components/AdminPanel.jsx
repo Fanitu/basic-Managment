@@ -15,7 +15,7 @@ const AdminPanel = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('managmentbackend-production.up.railway.app/order')
+      const response = await axios.get('managmentbackend-production.up.railway.app/api/order')
       console.log(response.data.orders);
       
       setOrders(response.data.orders);
@@ -26,7 +26,7 @@ const AdminPanel = () => {
     } 
 
     try {
-      const res = await axios.get('managmentbackend-production.up.railway.app/running-costs')
+      const res = await axios.get('managmentbackend-production.up.railway.app/api/running-costs')
       
       setRunningCosts(res.data.runningCost);
       setError('');
