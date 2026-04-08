@@ -24,7 +24,7 @@ const MainSection = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/order', formData);
+      const response = await axios.post('https://managmentbackend-production.up.railway.app/api/order', formData);
       setMessage('Order submitted successfully!');
       setFormData({ orderType: '', quantity: 0 });
       console.log('Response:', response.data);

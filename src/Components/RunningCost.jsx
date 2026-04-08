@@ -37,7 +37,7 @@ const RunningCost = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/running-costs', costData);
+      const response = await axios.post('https://managmentbackend-production.up.railway.app/api/running-costs', costData);
       showMessage('Running cost added successfully!','success');
       setCostData({ costName: '', amount: 0 });
       console.log('Response:', response.data);
