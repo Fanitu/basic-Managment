@@ -109,7 +109,7 @@ const AdminPanel = () => {
     return <div className="error">{error}</div>;
   }
 
-  if (loading) {
+  if (load) {
     return <div className="loading">Loading...</div>;
   }
 
