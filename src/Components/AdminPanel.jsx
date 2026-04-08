@@ -22,7 +22,9 @@ const AdminPanel = () => {
     } catch (err) {
       console.log('Error fetching data:',);
       setError('Failed to fetch data. Please check your backend server.');
-    } 
+    } finally {
+      setLoad(false);
+    }
 
     try {
       const res = await axios.get('https://managmentbackend-production.up.railway.app/api/running-costs')
@@ -32,8 +34,6 @@ const AdminPanel = () => {
     } catch (err) {
       console.log('Error fetching data:');
       setError('Failed to fetch data. Please check your backend server.');
-    } finally {
-      setLoad(false);
     }
   };
 
