@@ -37,15 +37,15 @@ const AdminPanel = () => {
         monthlyCostsRes,
         dailySummariesRes,
       ] = await Promise.all([
-        axios.get('http://localhost:5000/api/order'),
-        axios.get('http://localhost:5000/api/running-costs'),
-        axios.get('http://localhost:5000/api/order/daily-summaries'),
-        axios.get('http://localhost:5000/api/running-costs/daily-summaries'),
-        axios.get('http://localhost:5000/api/order/weekly-summaries'),
-        axios.get('http://localhost:5000/api/running-costs/weekly-summaries'),
-        axios.get('http://localhost:5000/api/order/monthly-summaries'),
-        axios.get('http://localhost:5000/api/running-costs/monthly-summaries'),
-        axios.get('http://localhost:5000/api/combined')
+        axios.get('https://managmentbackend-production.up.railway.app/api/order'),
+        axios.get('https://managmentbackend-production.up.railway.app/api/running-costs'),
+        axios.get('https://managmentbackend-production.up.railway.app/api/order/daily-summaries'),
+        axios.get('https://managmentbackend-production.up.railway.app/api/running-costs/daily-summaries'),
+        axios.get('https://managmentbackend-production.up.railway.app/api/order/weekly-summaries'),
+        axios.get('https://managmentbackend-production.up.railway.app/api/running-costs/weekly-summaries'),
+        axios.get('https://managmentbackend-production.up.railway.app/api/order/monthly-summaries'),
+        axios.get('https://managmentbackend-production.up.railway.app/api/running-costs/monthly-summaries'),
+        axios.get('https://managmentbackend-production.up.railway.app/api/combined')
       ]);
 
       setOrders(ordersRes.data.orders);
