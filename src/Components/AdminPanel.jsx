@@ -483,8 +483,7 @@ const AdminPanel = () => {
     return <div className="error">{error}</div>;
   }
 
-  if (load) {
-    return <div className="loading">Loading...</div>;
+  {load &&( <div className="loading">Loading...</div>)
   }
 
   return (
