@@ -58,7 +58,6 @@ const AdminPanel = () => {
       setMonthlyRunningCosts(monthlyCostsRes.data.monthlyRunningCostSummaries || []);
       setDailySummaries(dailySummariesRes.data.combinedSummaries || []);
 
-      console.log('Combined Summaries:', dailySummariesRes.data.combinedSummaries);
     } catch (err) {
       console.error('Error fetching data:', err);
       setError('Failed to fetch data. Please check your backend server.');
