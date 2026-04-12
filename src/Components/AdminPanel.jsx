@@ -142,7 +142,7 @@ const AdminPanel = () => {
   const renderOrdersTab = () => (
     <div className="timeline-view">
       {allDates.length === 0 ? (
-        <p className="no-data">No data found</p>
+        <p className="no-data">Loading....</p>
       ) : (
         allDates.map(date => {
           const sums = calculateDaySums(date);
