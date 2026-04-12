@@ -13,7 +13,7 @@ const AdminPanel = () => {
   const [dailyRunningCosts, setDailyRunningCosts] = useState([]);
   const [weeklyRunningCosts, setWeeklyRunningCosts] = useState([]);
   const [monthlyRunningCosts, setMonthlyRunningCosts] = useState([]);
-  const [load, setLoad] = useState(false);
+  const [load, setLoad] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
