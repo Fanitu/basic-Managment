@@ -194,6 +194,7 @@ const AdminPanel = () => {
                             <span>Price: {(order.ordersPrice || 0).toFixed(2)} Birr</span>
                             <span>Making price: {(order.ordersMakingPrice || 0).toFixed(2)} Birr</span>
                             <span>Profit: {(order.profite || 0).toFixed(2)} Birr</span>
+<span> margin: {(((order.profite ÷ order.ordersPrice)×100 )|| 0).toFixed(2)}% Birr</span>
                           </div>
                         </div>
                       ))}
