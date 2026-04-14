@@ -196,7 +196,7 @@ const AdminPanel = () => {
                             <span>Profit: {(order.profite || 0).toFixed(2)} Birr</span>
 <span> margin: 
   {((
-  order.profite/order.ordersPrice × 100 )|| 0)
+  order.profite / order.ordersPrice × 100 )|| 0)
 .toFixed(2)
 }%
 </span>
