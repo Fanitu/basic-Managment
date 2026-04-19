@@ -96,6 +96,12 @@ const MainSection = () => {
                     <option value="Two_litre">Two litre</option>
                     <option value="Half_litre">Half litre</option>
                   </optgroup>
+<optgroup label="Dabo">
+                    <option value="One_dabo">One Dabo</option>
+                    <option value="Two_dabo">Two Dabo</option>
+                    <option value="three_dabo">Three Dabo</option>
+<option value="four_dabo">four Dabo</option>
+                  </optgroup>
           </select>
         </div>
 
