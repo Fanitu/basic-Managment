@@ -10,12 +10,66 @@ const MainSection = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  const handleInputChange = (e) => {
+    const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: name === 'quantity' ? parseFloat(value) : value
-    });
+    console.log(name,value);
+    if(name ==="orderType"){
+
+
+    const actualPriceForm = {
+    Fata_Normal_ms2: 100,
+    Fata_Normal_ms3: 120,
+    Fata_Normal_ms4: 150,
+    Fata_Normal_ms5:170,
+    Fata_Normal_ms6:200,
+    Fata_Normal_ms7:220,
+    Fata_Normal_ms8:250,
+    Fata_Normal_ms9:270,
+    Fata_Normal_ms10:300,
+    Fata_Normal_ms11:330,
+    Fata_Normal_ms12:360,
+    Fata_Normal_ms13:390,
+    Fata_Normal_ms14:410,
+    Fata_Normal_ms15:440,
+
+
+    Fata_Special_ms2:160,
+    Fata_Special_ms3:190,
+    Fata_Special_ms4:210,
+    Fata_Special_ms5:230,
+    Fata_Special_ms6:260,
+    Fata_Special_ms7:280,
+    Fata_Special_ms8:310,
+    Fata_Special_ms9:340,
+    Fata_Special_ms10:370,
+    Fata_Special_ms11:400,
+    Fata_Special_ms12:430,
+    Fata_Special_ms13:460,
+    Fata_Special_ms14:490,
+    Fata_Special_ms15:520,
+
+    Normal_Toast:130,
+    Special_Toast:170,
+    Egg_Sandwich:60,
+
+    Normal_Ful:120,
+    Special_Ful:150,
+     One_dabo:15,
+    Two_dabo:30,
+    Three_dabo:45,
+    Four_dabo:60
+   
+  }
+      const number = actualPriceForm[value];
+      console.log(number);
+      console.log("we are in order type");
+      return setFormData({
+        ...formData,
+        [name]: value,
+        quantity: number
+      })
+
+    }
   };
 
   const handleSubmit = async (e) => {
