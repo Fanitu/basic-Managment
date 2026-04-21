@@ -51,6 +51,9 @@ const MainSection = () => {
     Normal_Toast:130,
     Special_Toast:170,
     Egg_Sandwich:60,
+    One_litre:40,
+    Two_litre:50,
+    Half_litre:30,
 
     Normal_Ful:120,
     Special_Ful:150,
