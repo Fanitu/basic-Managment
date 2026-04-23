@@ -313,7 +313,7 @@ const AdminPanel = () => {
     const combinedWeeklyData = {};
     
     weeklySummaries.forEach(summary => {
-      const key = `${summary._id.year}-${summary._id.week}`;
+      const key = `${summary.year}-${summary.week}`;
       combinedWeeklyData[key] = {
         ...combinedWeeklyData[key],
         ...summary,
@@ -322,7 +322,7 @@ const AdminPanel = () => {
     });
     
     weeklyRunningCosts.forEach(cost => {
-      const key = `${cost._id.year}-${cost._id.week}`;
+      const key = `${cost.year}-${cost.week}`;
       combinedWeeklyData[key] = {
         ...combinedWeeklyData[key],
         totalRunningCost: cost.totalRunningCost || 0,
@@ -331,8 +331,8 @@ const AdminPanel = () => {
     });
 
     const sortedWeeks = Object.values(combinedWeeklyData).sort((a, b) => {
-      if (a._id.year !== b._id.year) return b._id.year - a._id.year;
-      return b._id.week - a._id.week;
+      if (a.year !== b.year) return b.year - a.year;
+      return b.week - a.week;
     });
 
     return (
@@ -351,7 +351,7 @@ const AdminPanel = () => {
             return (
               <div key={week.key} className="date-group">
                 <div className="date-header">
-                  <h3>Week {week._id.week}, {week._id.year}</h3>
+                  <h3>Week {week.week}, {week.year}</h3>
                   <p className="week-range">{formatWeekRange(week.startDate, week.endDate)}</p>
                 </div>
                 
