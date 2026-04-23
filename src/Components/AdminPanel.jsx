@@ -57,6 +57,7 @@ const AdminPanel = () => {
       setMonthlySummaries(monthlyOrdersRes.data.monthlySummaries || []);
       setMonthlyRunningCosts(monthlyCostsRes.data.monthlyRunningCostSummaries || []);
       setDailySummaries(dailySummariesRes.data.combinedSummaries || []);
+      console.log(weeklySummaries);
 
     } catch (err) {
       console.error('Error fetching data:', err);
