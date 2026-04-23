@@ -58,7 +58,7 @@ const AdminPanel = () => {
       setMonthlyRunningCosts(monthlyCostsRes.data.monthlyRunningCostSummaries || []);
       setDailySummaries(dailySummariesRes.data.combinedSummaries || []);
       console.log(weeklySummaries);
-      console.log(weeklyOrdersRes.data,"befor",
+      console.log(weeklyOrdersRes.data.weeklySummaries,"befor",
         weeklyCostsRes.data.weeklyRunningCostSummaries);
 
     } catch (err) {
