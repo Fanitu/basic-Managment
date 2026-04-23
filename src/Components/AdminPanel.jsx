@@ -309,90 +309,63 @@ const AdminPanel = () => {
 };
 
   // Render Weekly Tab
-  const renderWeeklyTab = () => {
-    const combinedWeeklyData = {};
-    
-    weeklySummaries.forEach(summary => {
-      const key = `${summary.year}-${summary.week}`;
-      combinedWeeklyData[key] = {
-        ...combinedWeeklyData[key],
-        ...summary,
-        key: key
-      };
-    });
-    
-    weeklyRunningCosts.forEach(cost => {
-      const key = `${cost.year}-${cost.week}`;
-      combinedWeeklyData[key] = {
-        ...combinedWeeklyData[key],
-        totalRunningCost: cost.totalRunningCost || 0,
-        costCount: cost.costCount || 0
-      };
-    });
+ exports.getWeeklySummaries = async (req, res) => {
+    try {
+        const orders = await Orders.aggregate([
+            {
+                $addFields: {
+                    weekStart: {
+                        $dateTrunc: {
+                            date: "$createdAt",
+                            unit: "week",
+                            binSize: 1,
+                            startOfWeek: "Mon"
+                        }
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: "$weekStart",
+                    startDate: { $min: "$createdAt" },
+                    endDate: { $max: "$createdAt" },
+                    totalRevenue: { $sum: "$ordersPrice" },
+                    totalMakingCost: { $sum: "$ordersMakingPrice" },
+                    totalProfit: { $sum: "$profite" },
+                    orderCount: { $sum: 1 }
+                }
+            },
+            {
+                $addFields: {
+                    year: { $year: "$_id" },
+                    week: { $isoWeek: "$_id" },
+                    // Calculate Sunday (end of the week)
+                    weekEnd: {
+                        $dateAdd: {
+                            startDate: "$_id",
+                            unit: "day",
+                            amount: 6
+                        }
+                    }
+                }
+            },
+            {
+                $sort: { "_id": -1 }
+            }
+        ]);
 
-    const sortedWeeks = Object.values(combinedWeeklyData).sort((a, b) => {
-      if (a.year !== b.year) return b.year - a.year;
-      return b.week - a.week;
-    });
-
-    return (
-      <div className="weekly-view">
-        {sortedWeeks.length === 0 ? (
-          <p className="no-data">No weekly data found</p>
-        ) : (
-          sortedWeeks.map(week => {
-            const totalRevenue = week.totalRevenue || 0;
-            const totalMakingCost = week.totalMakingCost || 0;
-            const totalProfit = week.totalProfit || 0;
-            const totalRunningCost = week.totalRunningCost || 0;
-            const netProfit = totalProfit - totalRunningCost;
-            const orderCount = week.orderCount || 0;
-
-            return (
-              <div key={week.key} className="date-group">
-                <div className="date-header">
-                  <h3>Week {week.week}, {week.year}</h3>
-                  <p className="week-range">{formatWeekRange(week.startDate, week.endDate)}</p>
-                </div>
-                
-                <div className="daily-summary standalone">
-                  <div className="summary-grid">
-                    <div className="summary-item">
-                      <span className="summary-label">Total Revenue:</span>
-                      <span className="summary-value">{totalRevenue.toFixed(2)} Birr</span>
-                    </div>
-                    <div className="summary-item">
-                      <span className="summary-label">COGS (Making Cost):</span>
-                      <span className="summary-value">{totalMakingCost.toFixed(2)} Birr</span>
-                    </div>
-                    <div className="summary-item">
-                      <span className="summary-label">Gross Profit:</span>
-                      <span className="summary-value profit">{totalProfit.toFixed(2)} Birr</span>
-                    </div>
-                    <div className="summary-item">
-                      <span className="summary-label">Running Costs:</span>
-                      <span className="summary-value cost">{totalRunningCost.toFixed(2)} Birr</span>
-                    </div>
-                    <div className="summary-item">
-                      <span className="summary-label">Number of Orders:</span>
-                      <span className="summary-value">{orderCount}</span>
-                    </div>
-                    <div className="summary-item total">
-                      <span className="summary-label">Net Profit:</span>
-                      <span className={`summary-value ${netProfit >= 0 ? 'net-profit' : 'net-loss'}`}>
-                        {netProfit.toFixed(2)} Birr
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })
-        )}
-      </div>
-    );
-  };
-
+        res.status(200).json({
+            success: true,
+            weeklySummaries: orders
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error fetching weekly summaries",
+            error: error.message
+        });
+    }
+};
   // Render Monthly Tab
   const renderMonthlyTab = () => {
     const combinedMonthlyData = {};
