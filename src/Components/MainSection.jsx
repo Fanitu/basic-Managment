@@ -107,57 +107,57 @@ const MainSection = () => {
             required
           >
             <option value="">Select order type</option>
-             <optgroup label="Fata Normal">
-                    <option value="Fata_Normal_ms2">Fata Normal ms 2</option>
-                    <option value="Fata_Normal_ms3">Fata Normal ms 3</option>
-                    <option value="Fata_Normal_ms4">Fata Normal ms 4</option>
-                    <option value="Fata_Normal_ms5">Fata Normal ms 5</option>
-                    <option value="Fata_Normal_ms6">Fata Normal ms 6</option>
-                    <option value="Fata_Normal_ms7">Fata Normal ms 7</option>
-                    <option value="Fata_Normal_ms8">Fata Normal ms 8</option>
-                    <option value="Fata_Normal_ms9">Fata Normal ms 9</option>
-                    <option value="Fata_Normal_ms10">Fata Normal ms 10</option>
-                    <option value="Fata_Normal_ms11">Fata Normal ms 11</option>
-                    <option value="Fata_Normal_ms12">Fata Normal ms 12</option>
-                    <option value="Fata_Normal_ms13">Fata Normal ms 13</option>
-                    <option value="Fata_Normal_ms14">Fata Normal ms 14</option>
-                    <option value="Fata_Normal_ms15">Fata Normal ms 15</option>
+             <optgroup label="ፋታ ኖርማል">
+                    <option value="Fata_Normal_ms2">ፋታ ኖርማል ምስ 2</option>
+                    <option value="Fata_Normal_ms3">ፋታ ኖርማል ምስ 3</option>
+                    <option value="Fata_Normal_ms4">ፋታ ኖርማል ምስ 4</option>
+                    <option value="Fata_Normal_ms5">ፋታ ኖርማል ምስ 5</option>
+                    <option value="Fata_Normal_ms6">ፋታ ኖርማል ምስ 6</option>
+                    <option value="Fata_Normal_ms7">ፋታ ኖርማል ምስ 7</option>
+                    <option value="Fata_Normal_ms8">ፋታ ኖርማል ምስ 8</option>
+                    <option value="Fata_Normal_ms9">ፋታ ኖርማል ምስ 9</option>
+                    <option value="Fata_Normal_ms10">ፋታ ኖርማል ምስ 10</option>
+                    <option value="Fata_Normal_ms11">ፋታ ኖርማል ምስ 11</option>
+                    <option value="Fata_Normal_ms12">ፋታ ኖርማል ምስ 12</option>
+                    <option value="Fata_Normal_ms13">ፋታ ኖርማል ምስ 13</option>
+                    <option value="Fata_Normal_ms14">ፋታ ኖርማል ምስ 14</option>
+                    <option value="Fata_Normal_ms15">ፋታ ኖርማል ምስ 15</option>
                   </optgroup>
-                  <optgroup label="Fata Special">
-                    <option value="Fata_Special_ms2">Fata Special ms 2</option>
-                    <option value="Fata_Special_ms3">Fata Special ms 3</option>
-                    <option value="Fata_Special_ms4">Fata Special ms 4</option>
-                    <option value="Fata_Special_ms5">Fata Special ms 5</option>
-                    <option value="Fata_Special_ms6">Fata Special ms 6</option>
-                    <option value="Fata_Special_ms7">Fata Special ms 7</option>
-                    <option value="Fata_Special_ms8">Fata Special ms 8</option>
-                    <option value="Fata_Special_ms9">Fata Special ms 9</option>
-                    <option value="Fata_Special_ms10">Fata Special ms 10</option>
-                    <option value="Fata_Special_ms11">Fata Special ms 11</option>
-                    <option value="Fata_Special_ms12">Fata Special ms 12</option>
-                    <option value="Fata_Special_ms13">Fata Special ms 13</option>
-                    <option value="Fata_Special_ms14">Fata Special ms 14</option>
-                    <option value="Fata_Special_ms15">Fata Special ms 15</option>
+                  <optgroup label="ፋታ አስፔሻል">
+                    <option value="Fata_Special_ms2">ፋታ አስፔሻል ምስ 2</option>
+                    <option value="Fata_Special_ms3">ፋታ አስፔሻል ምስ 3</option>
+                    <option value="Fata_Special_ms4">ፋታ አስፔሻል ምስ 4</option>
+                    <option value="Fata_Special_ms5">ፋታ አስፔሻል ምስ 5</option>
+                    <option value="Fata_Special_ms6">ፋታ አስፔሻል ምስ 6</option>
+                    <option value="Fata_Special_ms7">ፋታ አስፔሻል ምስ 7</option>
+                    <option value="Fata_Special_ms8">ፋታ አስፔሻል ምስ 8</option>
+                    <option value="Fata_Special_ms9">ፋታ አስፔሻል ምስ 9</option>
+                    <option value="Fata_Special_ms10">ፋታ አስፔሻል ምስ 10</option>
+                    <option value="Fata_Special_ms11">ፋታ አስፔሻል ምስ 11</option>
+                    <option value="Fata_Special_ms12">ፋታ አስፔሻል ምስ 12</option>
+                    <option value="Fata_Special_ms13">ፋታ አስፔሻል ምስ 13</option>
+                    <option value="Fata_Special_ms14">ፋታ አስፔሻል ምስ 14</option>
+                    <option value="Fata_Special_ms15">ፋታ አስፔሻል ምስ 15</option>
                   </optgroup>
-                  <optgroup label="Toast">
-                    <option value="Normal_Toast">Normal Toast</option>
-                    <option value="Special_Toast">Special Toast</option>
-                    <option value="Egg_Sandwich">Egg Sandwich</option>
+                  <optgroup label="ቶስት">
+                    <option value="Normal_Toast">ኖርማል ቶስት</option>
+                    <option value="Special_Toast">አስፔሻል ቶስት</option>
+                    <option value="Egg_Sandwich">ፓኒኖ አንቓቅሖ</option>
                   </optgroup>
-                  <optgroup label="Ful">
-                    <option value="Normal_Ful">Normal Ful</option>
-                    <option value="Special_Ful">Special Ful</option>
+                  <optgroup label="ፉል">
+                    <option value="Normal_Ful">ፉል ኖርማል</option>
+                    <option value="Special_Ful">ፉል አስፔሻል</option>
                   </optgroup>
-                  <optgroup label="water">
-                    <option value="One_litre">One litre</option>
-                    <option value="Two_litre">Two litre</option>
-                    <option value="Half_litre">Half litre</option>
+                  <optgroup label="ማይ">
+                    <option value="One_litre">1 ሊትሮ ማይ</option>
+                    <option value="Two_litre">2 ሊትሮ ማይ</option>
+                    <option value="Half_litre">½ ሊትሮ ማይ</option>
                   </optgroup>
-<optgroup label="Dabo">
-                    <option value="One_dabo">One Dabo</option>
-                    <option value="Two_dabo">Two Dabo</option>
-                    <option value="three_dabo">Three Dabo</option>
-<option value="four_dabo">four Dabo</option>
+<optgroup label="ባኒ">
+                    <option value="One_dabo">1 ችማሪ ባኒ</option>
+                    <option value="Two_dabo">2 ችማሪ ባኒ</option>
+                    <option value="three_dabo">3 ችማሪ ባኒ</option>
+<option value="four_dabo">4 ችማሪ ባኒ</option>
                   </optgroup>
           </select>
         </div>
