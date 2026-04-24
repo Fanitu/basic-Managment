@@ -311,7 +311,8 @@ const AdminPanel = () => {
   // Render Weekly Tab
 const renderWeeklyTab = () => {
     const combinedWeeklyData = {};
-    
+
+    // First, add all weekly summaries
     weeklySummaries.forEach(summary => {
       const key = `${summary.year}-${summary.week}`;
       combinedWeeklyData[key] = {
@@ -320,15 +321,35 @@ const renderWeeklyTab = () => {
         key: key
       };
     });
-    
+
+    // Then, merge running costs (this will also add weeks that only have running costs)
     weeklyRunningCosts.forEach(cost => {
       const key = `${cost._id.year}-${cost._id.week}`;
+      if (!combinedWeeklyData[key]) {
+        // If no orders exist for this week, create entry with default values
+        combinedWeeklyData[key] = {
+          _id: new Date(cost._id.year, 0, 1 + (cost._id.week - 1) * 7), // Approximate date
+          year: cost._id.year,
+          week: cost._id.week,
+          startDate: null,
+          endDate: null,
+          totalRevenue: 0,
+          totalMakingCost: 0,
+          totalProfit: 0,
+          orderCount: 0,
+          weekEnd: new Date(new Date(cost._id.year, 0, 1 + (cost._id.week - 1) * 7).getTime() + 6 * 24 * 60 * 60 * 1000),
+          key: key
+        };
+      }
       combinedWeeklyData[key] = {
         ...combinedWeeklyData[key],
         totalRunningCost: cost.totalRunningCost || 0,
         costCount: cost.costCount || 0
       };
     });
+
+    // Debug: Check what weeks we have
+    console.log('All weeks:', Object.keys(combinedWeeklyData));
 
     const sortedWeeks = Object.values(combinedWeeklyData).sort((a, b) => {
       if (a.year !== b.year) return b.year - a.year;
@@ -348,10 +369,26 @@ const renderWeeklyTab = () => {
             const netProfit = totalProfit - totalRunningCost;
             const orderCount = week.orderCount || 0;
 
-            // Use weekEnd from backend (Sunday) if available, otherwise calculate it
-            const weekStartDate = new Date(week._id);
-            const weekEndDate = week.weekEnd ? new Date(week.weekEnd) : new Date(week._id);
-            if (!week.weekEnd) {
+            // Use weekEnd from backend if available, otherwise calculate it
+            let weekStartDate, weekEndDate;
+            
+            if (week._id && typeof week._id === 'string' && week._id.includes('T')) {
+              // If _id is a date string
+              weekStartDate = new Date(week._id);
+            } else if (week.startDate) {
+              // If we have startDate from orders
+              weekStartDate = new Date(week.startDate);
+            } else {
+              // Calculate from year and week number
+              weekStartDate = getDateFromWeek(week.year, week.week);
+            }
+
+            if (week.weekEnd) {
+              weekEndDate = new Date(week.weekEnd);
+            } else if (week.endDate) {
+              weekEndDate = new Date(week.endDate);
+            } else {
+              weekEndDate = new Date(weekStartDate);
               weekEndDate.setDate(weekEndDate.getDate() + 6);
             }
 
@@ -363,7 +400,7 @@ const renderWeeklyTab = () => {
                     {weekStartDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })} - {weekEndDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}
                   </p>
                 </div>
-                
+
                 <div className="daily-summary standalone">
                   <div className="summary-grid">
                     <div className="summary-item">
@@ -401,6 +438,21 @@ const renderWeeklyTab = () => {
       </div>
     );
   };
+
+// Helper function to get date from ISO week number
+function getDateFromWeek(year, week) {
+  const simple = new Date(year, 0, 1 + (week - 1) * 7);
+  const dayOfWeek = simple.getDay();
+  const isoWeekStart = new Date(simple);
+  
+  if (dayOfWeek <= 4) {
+    isoWeekStart.setDate(simple.getDate() - simple.getDay() + 1);
+  } else {
+    isoWeekStart.setDate(simple.getDate() + 8 - simple.getDay());
+  }
+  
+  return isoWeekStart;
+}
   // Render Monthly Tab
   const renderMonthlyTab = () => {
     const combinedMonthlyData = {};
